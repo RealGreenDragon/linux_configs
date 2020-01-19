@@ -1,2 +1,2 @@
-# linux_configs
-Configuration guides for Linux
+# Configuration guides for Linux
+Useful to config a new Linux installation (bare-metal or virtualized)
