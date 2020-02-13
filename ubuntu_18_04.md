@@ -1,4 +1,4 @@
-# Ubuntu 18.04.3 LTS Configuration Guide
+# Ubuntu 18.04 LTS Configuration Guide
 
 Author: Daniele Giudice
 
@@ -66,12 +66,12 @@ sudo reboot
 
 #### Base software
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential curl wget net-tools unrar zip p7zip-full p7zip-rar sed cut gawk vim git qpdf python3 python3-dev python3-doc python3-pip python3-venv && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential curl wget net-tools unrar zip p7zip-full p7zip-rar sed gawk vim git qpdf python3 python3-dev python3-doc python3-pip python3-venv && sudo apt -y autoremove && sudo apt -y clean
 ```
 
 #### Codecs + VLC + FFMpeg + Mediainfo
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install vlc vlc-data libdvdnav4 libdvdread4 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libdvd-pkg ubuntu-restricted-extras ffmpeg rtmpdump ffmpegthumbnailer mediainfo mediainfo-gui && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install vlc vlc-data libdvdnav4 libdvdread4 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libdvd-pkg ubuntu-restricted-extras ffmpeg rtmpdump ffmpegthumbnailer mediainfo mediainfo-gui && sudo dpkg-reconfigure -f noninteractive libdvd-pkg && sudo apt -y autoremove && sudo apt -y clean
 ```
 
 #### Pyhton3 Modules + youtube_dl
