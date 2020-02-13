@@ -99,9 +99,9 @@ sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt -y update &&
 wget -O ~/atom-amd64.deb https://atom.io/download/deb && sudo apt -y install ~/atom-amd64.deb && rm -f ~/atom-amd64.deb && sudo apt -y autoremove && sudo apt -y clean
 ```
 
-#### XAMPP v7.4.1 x64 + Shortcut scripts in home directory
+#### XAMPP v7.4.2 x64 + Shortcut scripts in home directory
 ```
-wget -O ~/xampp-x64.run "https://www.apachefriends.org/xampp-files/7.4.1/xampp-linux-x64-7.4.1-0-installer.run" && chmod a+x ~/xampp-x64.run && sudo ~/xampp-x64.run --mode unattended && rm -f ~/xampp-x64.run && sudo chmod o+rx -R /opt/lampp/htdocs/ && echo "/opt/lampp/manager-linux-x64.run" > ~/xampp_gui.sh && echo "/opt/lampp/lampp" > ~/xampp_service.sh && chmod a+x ~/xampp_*.sh
+wget -O ~/xampp-x64.run "https://www.apachefriends.org/xampp-files/7.4.2/xampp-linux-x64-7.4.2-0-installer.run" && chmod a+x ~/xampp-x64.run && sudo ~/xampp-x64.run --mode unattended && rm -f ~/xampp-x64.run && sudo chmod o+rx -R /opt/lampp/htdocs/ && echo "/opt/lampp/manager-linux-x64.run" > ~/xampp_gui.sh && echo "/opt/lampp/lampp" > ~/xampp_service.sh && chmod a+x ~/xampp_*.sh
 ```
 
 #### Docker (current user access enabled) -> Reboot required
