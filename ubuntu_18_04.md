@@ -66,7 +66,7 @@ sudo reboot
 
 #### Base software
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential curl wget net-tools unrar zip p7zip-full p7zip-rar sed gawk vim git qpdf python3 python3-dev python3-doc python3-pip python3-venv && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https ca-certificates gnupg software-properties-common build-essential linux-tools-common linux-tools-generic wget curl net-tools sed gawk vim qpdf unrar zip p7zip-full p7zip-rar python3 python3-dev python3-doc python3-pip python3-venv git sqlite3 && sudo apt -y autoremove && sudo apt -y clean
 ```
 
 #### Codecs + VLC + FFMpeg + Mediainfo
@@ -79,24 +79,29 @@ sudo apt -y update && sudo apt -y upgrade && sudo apt -y install vlc vlc-data li
 sudo python3 -m pip install --upgrade pip wheel setuptools requests python_utils pycryptodome youtube_dl
 ```
 
+#### CMake
+```
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add - && sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && sudo apt -y upgrade && sudo apt -y install cmake
+```
+
 #### MiKTeX (system-wide, basic installation, automatic package installation enabled)
 ```
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --package-level=basic --upgrade && sudo apt -y autoremove && sudo apt -y clean
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --package-level=basic --upgrade
 ```
 
 #### MKVToolNix + GUI
 ```
-wget -q -O - https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt | sudo apt-key add - && echo "deb https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mkvtoolnix.download.list && sudo apt -y update && sudo apt -y install mkvtoolnix mkvtoolnix-gui && sudo apt -y autoremove && sudo apt -y clean
+wget -q -O - https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt | sudo apt-key add - && echo "deb https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mkvtoolnix.download.list && sudo apt -y update && sudo apt -y install mkvtoolnix mkvtoolnix-gui
 ```
 
 #### Notepadqq
 ```
-sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt -y update && sudo apt install -y notepadqq && sudo apt -y autoremove && sudo apt -y clean
+sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt -y update && sudo apt -y install notepadqq
 ```
 
 #### Atom
 ```
-wget -O ~/atom-amd64.deb https://atom.io/download/deb && sudo apt -y install ~/atom-amd64.deb && rm -f ~/atom-amd64.deb && sudo apt -y autoremove && sudo apt -y clean
+wget -O ~/atom-amd64.deb https://atom.io/download/deb && sudo apt -y install ~/atom-amd64.deb && rm -f ~/atom-amd64.deb
 ```
 
 #### XAMPP v7.4.2 x64 + Shortcut scripts in home directory
@@ -116,7 +121,7 @@ sudo apt -y install wireshark && sudo usermod -aG wireshark $(whoami) && sudo re
 
 #### Nmap
 ```
-sudo apt -y install nmap && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y install nmap
 ```
 
 #### Kathara + GUI -> Requirements: Docker + python 2.7 (aliased as 'python')
@@ -134,10 +139,10 @@ $NETKIT_HOME/install
 
 #### qBittorrent
 ```
-sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && sudo apt -y update && sudo apt install -y qbittorrent && sudo apt -y autoremove && sudo apt -y clean
+sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && sudo apt -y update && sudo apt -y install qbittorrent
 ```
 
 #### aMule
 ```
-sudo apt install -y amule && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y install amule
 ```
