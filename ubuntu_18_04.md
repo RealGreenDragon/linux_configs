@@ -64,29 +64,28 @@ sudo reboot
 
 ## Software (if not specified, latest available version will be installed)
 
+### General
+
 #### Base software
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https ca-certificates gnupg software-properties-common build-essential linux-tools-common linux-tools-generic wget curl net-tools sed gawk vim qpdf unrar zip p7zip-full p7zip-rar python3 python3-dev python3-doc python3-pip python3-venv git sqlite3 && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install hunspell-en-us hunspell-it apt-transport-https ca-certificates gnupg software-properties-common build-essential linux-tools-common linux-tools-generic wget curl net-tools sed gawk vim qpdf unrar zip p7zip-full p7zip-rar python3 python3-dev python3-doc python3-pip python3-venv git sqlite3 && sudo apt -y autoremove && sudo apt -y clean
 ```
+
+#### Basic Pyhton 3 Modules
+```
+sudo python3 -m pip install --upgrade pip wheel setuptools
+```
+
+### Audio/Video
 
 #### Codecs + VLC + FFMpeg + Mediainfo
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install vlc vlc-data libdvdnav4 libdvdread4 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libdvd-pkg ubuntu-restricted-extras ffmpeg rtmpdump ffmpegthumbnailer mediainfo mediainfo-gui && sudo dpkg-reconfigure -f noninteractive libdvd-pkg && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install vlc vlc-data libdvdnav4 libdvdread4 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libdvd-pkg ubuntu-restricted-extras ffmpeg rtmpdump ffmpegthumbnailer mediainfo mediainfo-gui && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
 ```
 
-#### Pyhton3 Modules + youtube_dl
+#### youtube-dl
 ```
-sudo python3 -m pip install --upgrade pip wheel setuptools requests python_utils pycryptodome youtube_dl
-```
-
-#### CMake
-```
-wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add - && sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && sudo apt -y upgrade && sudo apt -y install cmake
-```
-
-#### MiKTeX (system-wide, basic installation, automatic package installation enabled)
-```
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --package-level=basic --upgrade
+sudo python3 -m pip install --upgrade youtube_dl
 ```
 
 #### MKVToolNix + GUI
@@ -94,41 +93,65 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC24356
 wget -q -O - https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt | sudo apt-key add - && echo "deb https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mkvtoolnix.download.list && sudo apt -y update && sudo apt -y install mkvtoolnix mkvtoolnix-gui
 ```
 
-#### Notepadqq
-```
-sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt -y update && sudo apt -y install notepadqq
-```
+### Editors & IDE
 
 #### Atom
 ```
 wget -O ~/atom-amd64.deb https://atom.io/download/deb && sudo apt -y install ~/atom-amd64.deb && rm -f ~/atom-amd64.deb
 ```
 
-#### XAMPP v7.4.2 x64 + Shortcut scripts in home directory
+#### Notepadqq
 ```
-wget -O ~/xampp-x64.run "https://www.apachefriends.org/xampp-files/7.4.2/xampp-linux-x64-7.4.2-0-installer.run" && chmod a+x ~/xampp-x64.run && sudo ~/xampp-x64.run --mode unattended && rm -f ~/xampp-x64.run && sudo chmod o+rx -R /opt/lampp/htdocs/ && echo "/opt/lampp/manager-linux-x64.run" > ~/xampp_gui.sh && echo "/opt/lampp/lampp" > ~/xampp_service.sh && chmod a+x ~/xampp_*.sh
+sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt -y update && sudo apt -y install notepadqq
 ```
+
+#### MiKTeX (system-wide, basic installation, automatic package installation enabled, TeXworks desktop icon) -> After installed it, NOT install TeXlive or standard TeXworks
+```
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade && sudo mpm --admin --verbose --update
+sudo tee /usr/share/applications/miktex-texworks.desktop > /dev/null <<EOT
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=TeXworks MiKTeX
+Icon=miktex-texworks
+Exec=miktex-texworks
+Comment=TeXworks MiKTeX
+Terminal=false
+MimeType=text/x-tex;application/pdf;
+Categories=Office;Qt;
+EOT
+```
+
+### Web & Programming
+
+#### CMake
+```
+sudo apt -y install cmake
+```
+
+#### XAMPP v7.4.4 x64 + Shortcut scripts in home directory
+```
+wget -O ~/xampp-x64.run "https://www.apachefriends.org/xampp-files/7.4.4/xampp-linux-x64-7.4.4-0-installer.run" && chmod +x ~/xampp-x64.run && sudo ~/xampp-x64.run --mode unattended && rm -f ~/xampp-x64.run && sudo chmod o+rx -R /opt/lampp/htdocs/ && echo "/opt/lampp/manager-linux-x64.run" > ~/xampp_gui.sh && echo "/opt/lampp/lampp" > ~/xampp_service.sh && chmod a+x ~/xampp_*.sh
+```
+
+### Virtualization
 
 #### Docker (current user access enabled) -> Reboot required
 ```
 curl -fsSL https://get.docker.com -o ~/get-docker.sh && chmod a+x ~/get-docker.sh && sudo sh ~/get-docker.sh && rm -f ~/get-docker.sh && sudo usermod -aG docker $(whoami) && sudo reboot
 ```
 
-#### Wireshark (current user access enabled) -> Reboot required
-```
-sudo apt -y install wireshark && sudo usermod -aG wireshark $(whoami) && sudo reboot
-```
-
-#### Nmap
-```
-sudo apt -y install nmap
-```
+### Network
 
 #### Kathara + GUI -> Requirements: Docker + python 2.7 (aliased as 'python')
 ```
 sudo apt -y install xterm python && sudo python -m pip install --upgrade ipaddress && sudo git clone --recursive https://github.com/KatharaFramework/Kathara.git /opt/kathara
 
-printf "\n#Kathara Config\nexport NETKIT_HOME=/opt/kathara/bin\nexport PATH=\$PATH:\$NETKIT_HOME" >> ~/.bashrc
+tee -a ~/.bashrc > /dev/null <<EOT
+# Kathara Env
+export NETKIT_HOME=/opt/kathara/bin
+export PATH=\$PATH:\$NETKIT_HOME
+EOT
 
 export NETKIT_HOME=/opt/kathara/bin
 
@@ -137,12 +160,24 @@ export PATH=$PATH:$NETKIT_HOME
 $NETKIT_HOME/install
 ```
 
-#### qBittorrent
+#### Nmap
 ```
-sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && sudo apt -y update && sudo apt -y install qbittorrent
+sudo apt -y install nmap
 ```
+
+#### Wireshark (current user access enabled) -> Reboot required
+```
+sudo apt -y install wireshark && sudo usermod -aG wireshark $(whoami) && sudo reboot
+```
+
+### File Sharing
 
 #### aMule
 ```
 sudo apt -y install amule
+```
+
+#### qBittorrent
+```
+sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && sudo apt -y update && sudo apt -y install qbittorrent
 ```
