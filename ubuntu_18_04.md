@@ -68,7 +68,7 @@ sudo reboot
 
 #### Base software
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install hunspell-en-us hunspell-it apt-transport-https ca-certificates gnupg software-properties-common build-essential linux-tools-common linux-tools-generic wget curl net-tools sed gawk vim qpdf unrar zip p7zip-full p7zip-rar python3 python3-dev python3-doc python3-pip python3-venv git sqlite3 && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl gawk git gnupg hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools p7zip-full p7zip-rar python3 python3-dev python3-doc python3-pip python3-venv qpdf sed software-properties-common sqlite3 unrar vim wget zip && sudo apt -y autoremove && sudo apt -y clean
 ```
 
 #### Basic Pyhton 3 Modules
