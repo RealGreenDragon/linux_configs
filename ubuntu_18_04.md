@@ -62,7 +62,7 @@ sudo usermod -aG vboxsf $(whoami)
 sudo reboot
 ```
 
-## Software (if not specified, latest available version will be installed)
+## Software (if not specified, latest available x64 en-us version will be installed)
 
 ### General
 
@@ -73,7 +73,7 @@ sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-h
 
 #### Basic Pyhton 3 Modules
 ```
-sudo python3 -m pip install --upgrade pip wheel setuptools
+sudo python3 -m pip install --upgrade pip wheel setuptools requests pycryptodome
 ```
 
 ### Audio/Video
@@ -107,13 +107,14 @@ sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt -y update &&
 
 #### MiKTeX (system-wide, basic installation, automatic package installation enabled, TeXworks desktop icon) -> After installed it, NOT install TeXlive or standard TeXworks
 ```
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade && sudo mpm --admin --verbose --update
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade
+sudo wget -O /usr/local/share/miktex-texmf/texworks.png "http://www.tug.org/texworks/img/TeXworks256.png"
 sudo tee /usr/share/applications/miktex-texworks.desktop > /dev/null <<EOT
 [Desktop Entry]
 Version=1.0
 Type=Application
 Name=TeXworks MiKTeX
-Icon=miktex-texworks
+Icon=/usr/local/share/miktex-texmf/texworks.png
 Exec=miktex-texworks
 Comment=TeXworks MiKTeX
 Terminal=false
@@ -129,9 +130,14 @@ EOT
 sudo apt -y install cmake
 ```
 
-#### XAMPP v7.4.4 x64 + Shortcut scripts in home directory
+#### Tor Browser (local user installation) -> Requirements: python3
 ```
-wget -O ~/xampp-x64.run "https://www.apachefriends.org/xampp-files/7.4.4/xampp-linux-x64-7.4.4-0-installer.run" && chmod +x ~/xampp-x64.run && sudo ~/xampp-x64.run --mode unattended && rm -f ~/xampp-x64.run && sudo chmod o+rx -R /opt/lampp/htdocs/ && echo "/opt/lampp/manager-linux-x64.run" > ~/xampp_gui.sh && echo "/opt/lampp/lampp" > ~/xampp_service.sh && chmod a+x ~/xampp_*.sh
+wget -O ~/tor.tar.xz "$(python3 -c "import urllib.request; d=urllib.request.urlopen('https://www.torproject.org/download/').read().decode('utf8').split('\">Download for Linux')[0].rsplit('\"', 1)[-1]; print('https://www.torproject.org'+d)")" && tar xJpf ~/tor.tar.xz -C ~/ && rm -f ~/tor.tar.xz && cd ~/tor-browser_en-US && ./start-tor-browser.desktop --register-app && cd $OLDPWD
+```
+
+#### XAMPP + Shortcut scripts in home directory -> Requirements: python3
+```
+wget -O ~/xampp-x64.run "$(python3 -c "import urllib.request; print(urllib.request.urlopen('https://www.apachefriends.org/it/index.html').read().decode('utf8').split('XAMPP per <strong>Linux')[0].rsplit('href=\"', 1)[-1].split('\"')[0])")" && chmod +x ~/xampp-x64.run && sudo ~/xampp-x64.run --mode unattended && rm -f ~/xampp-x64.run && sudo chmod o+rx -R /opt/lampp/htdocs/ && echo "/opt/lampp/manager-linux-x64.run" > ~/xampp_gui.sh && echo "/opt/lampp/lampp" > ~/xampp_service.sh && chmod a+x ~/xampp_*.sh
 ```
 
 ### Virtualization
