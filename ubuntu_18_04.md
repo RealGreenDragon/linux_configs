@@ -66,9 +66,9 @@ sudo reboot
 
 ### General
 
-#### Base software
+#### Base software (python3 only - required for all other installations)
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl gawk git gnupg hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools p7zip-full p7zip-rar python3 python3-dev python3-doc python3-pip python3-venv qpdf sed software-properties-common sqlite3 unrar vim wget zip && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl gawk git gnupg hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools p7zip-full p7zip-rar python3 python3-dev python3-doc python3-launchpadlib python3-pip python3-testresources python3-venv python3-widgetsnbextension qpdf sed software-properties-common sqlite3 unrar vim wget zip && sudo apt -y autoremove && sudo apt -y clean
 ```
 
 #### Basic Pyhton 3 Modules
@@ -78,7 +78,7 @@ sudo python3 -m pip install --upgrade pip wheel setuptools requests pycryptodome
 
 ### Audio/Video
 
-#### Codecs + VLC + FFMpeg + Mediainfo
+#### Codecs + VLC + libdvdcss2 + FFMpeg + Mediainfo
 ```
 sudo apt -y update && sudo apt -y upgrade && sudo apt -y install vlc vlc-data libdvdnav4 libdvdread4 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libdvd-pkg ubuntu-restricted-extras ffmpeg rtmpdump ffmpegthumbnailer mediainfo mediainfo-gui && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
 ```
