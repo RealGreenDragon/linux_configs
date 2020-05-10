@@ -103,6 +103,10 @@ wget -O ~/atom-amd64.deb https://atom.io/download/deb && sudo apt -y install ~/a
 #### MiKTeX (system-wide, basic installation, automatic package installation enabled, TeXworks desktop icon) -> After installed it, NOT install TeXlive or standard TeXworks
 ```
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade
+# Fix AppArmor config to keep Evince working
+[[ $(grep miktex /etc/apparmor.d/local/usr.bin.evince 2> /dev/null | wc -l) == 0 ]] && echo '/var/lib/miktex-texmf/fontconfig/config/** r,' | sudo tee -a /etc/apparmor.d/local/usr.bin.evince > /dev/null
+sudo service apparmor reload
+# Add TeXworks Launcher Icon
 sudo wget -O /usr/local/share/miktex-texmf/texworks.png "http://www.tug.org/texworks/img/TeXworks256.png"
 sudo tee /usr/share/applications/miktex-texworks.desktop > /dev/null <<EOT
 [Desktop Entry]
