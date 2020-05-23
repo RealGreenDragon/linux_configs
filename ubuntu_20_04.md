@@ -78,9 +78,24 @@ sudo python3 -m pip install --upgrade pip wheel setuptools requests pycryptodome
 
 ### Audio/Video
 
-#### Codecs + VLC + libdvdcss2 + FFMpeg + Mediainfo
+#### Codecs + libdvdcss2 + FFMpeg + RTMPDump
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install vlc vlc-data libdvdnav4 libdvdread7 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libdvd-pkg ubuntu-restricted-extras ffmpeg rtmpdump ffmpegthumbnailer mediainfo mediainfo-gui && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install libdvdnav4 libdvdread7 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libdvd-pkg ubuntu-restricted-extras ffmpeg ffmpegthumbnailer rtmpdump && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
+```
+
+#### MediaInfo
+```
+sudo apt -y install mediainfo mediainfo-gui
+```
+
+#### MPV
+```
+sudo apt -y install mpv
+```
+
+#### VLC
+```
+sudo apt -y install vlc vlc-data
 ```
 
 #### youtube-dl
