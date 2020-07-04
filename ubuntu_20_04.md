@@ -73,7 +73,7 @@ sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-h
 
 #### Basic Pyhton 3 Modules
 ```
-sudo python3 -m pip install --upgrade pip wheel setuptools requests pycryptodome
+sudo python3 -m pip install --upgrade pip wheel setuptools
 ```
 
 ### Audio/Video
@@ -117,7 +117,7 @@ wget -O ~/atom-amd64.deb https://atom.io/download/deb && sudo apt -y install ~/a
 
 #### MiKTeX (system-wide, basic installation, automatic package installation enabled, TeXworks desktop icon) -> After installed it, NOT install TeXlive or standard TeXworks
 ```
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade && mpm --verbose --update
 # Fix AppArmor config to keep Evince working
 [[ $(grep miktex /etc/apparmor.d/local/usr.bin.evince 2> /dev/null | wc -l) == 0 ]] && echo '/var/lib/miktex-texmf/fontconfig/config/** r,' | sudo tee -a /etc/apparmor.d/local/usr.bin.evince > /dev/null
 sudo service apparmor reload
@@ -135,6 +135,8 @@ Terminal=false
 MimeType=text/x-tex;application/pdf;
 Categories=Office;Qt;
 EOT
+# Join TeX extensions to TeXworks
+grep texworks /usr/share/applications/defaults.list &> /dev/null || echo "text/x-tex=miktex-texworks.desktop" | sudo tee -a /usr/share/applications/defaults.list &> /dev/null
 ```
 
 ### Web & Programming

@@ -73,7 +73,7 @@ sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-h
 
 #### Basic Pyhton 3 Modules
 ```
-sudo python3 -m pip install --upgrade pip wheel setuptools requests pycryptodome
+sudo python3 -m pip install --upgrade pip wheel setuptools
 ```
 
 ### Audio/Video
@@ -122,7 +122,7 @@ sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt -y update &&
 
 #### MiKTeX (system-wide, basic installation, automatic package installation enabled, TeXworks desktop icon) -> After installed it, NOT install TeXlive or standard TeXworks
 ```
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade && mpm --verbose --update
 # Fix AppArmor config to keep Evince working
 [[ $(grep miktex /etc/apparmor.d/local/usr.bin.evince 2> /dev/null | wc -l) == 0 ]] && echo '/var/lib/miktex-texmf/fontconfig/config/** r,' | sudo tee -a /etc/apparmor.d/local/usr.bin.evince > /dev/null
 sudo service apparmor reload
@@ -140,6 +140,8 @@ Terminal=false
 MimeType=text/x-tex;application/pdf;
 Categories=Office;Qt;
 EOT
+# Join TeX extensions to TeXworks
+grep texworks /usr/share/applications/defaults.list &> /dev/null || echo "text/x-tex=miktex-texworks.desktop" | sudo tee -a /usr/share/applications/defaults.list &> /dev/null
 ```
 
 ### Web & Programming
@@ -147,6 +149,26 @@ EOT
 #### CMake
 ```
 sudo apt -y install cmake
+```
+
+#### JDowloader 2 BETA (No Adware + RAR5 Support)
+```
+# Source JD2 Clean Installer:
+# https://board.jdownloader.org/showthread.php?t=54725
+# Source JD2 latest 7zip bindings:
+# https://board.jdownloader.org/showthread.php?t=71069
+# Source megadown
+# https://github.com/tonikelope/megadown
+
+sudo apt -y install wget curl pv jq
+wget -O ~/megadown https://raw.githubusercontent.com/tonikelope/megadown/master/megadown
+chmod +x ~/megadown
+~/megadown -o ~/7zip_libs_1509_linux.zip 'https://mega.nz/#!fjIWVAgT!ZyrxAyU26IfxDdmpBemMAer4DpzW06oIEAYboPMom98'
+~/megadown -o ~/jd_setup_x64.sh 'https://mega.nz/#!LJ9FyK7b!t88t6YBo2Wm_ABkSO7GikxujDF5Hddng9bgDb8fwoJQ'
+chmod +x jd_setup_x64.sh
+~/jd_setup_x64.sh -q -dir ~/jd2 -overwrite &> jd_install_log.txt
+unzip ~/7zip_libs_1509_linux.zip -d ~/jd2/libs
+rm -rf ~/megadown ~/.megadown/ ~/7zip_1509_linux.zip ~/jd_setup_x64.sh ~/jd_install_log.txt ~/.oracle_jre_usage/
 ```
 
 #### Tor Browser (local user installation) -> Requirements: python3
