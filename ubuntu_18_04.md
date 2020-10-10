@@ -151,24 +151,20 @@ grep texworks /usr/share/applications/defaults.list &> /dev/null || echo "text/x
 sudo apt -y install cmake
 ```
 
-#### JDowloader 2 BETA (No Adware + RAR5 Support)
+#### JDowloader 2 BETA (No Adware)
 ```
 # Source JD2 Clean Installer:
 # https://board.jdownloader.org/showthread.php?t=54725
-# Source JD2 latest 7zip bindings:
-# https://board.jdownloader.org/showthread.php?t=71069
 # Source megadown
 # https://github.com/tonikelope/megadown
 
 sudo apt -y install wget curl pv jq
 wget -O ~/megadown https://raw.githubusercontent.com/tonikelope/megadown/master/megadown
 chmod +x ~/megadown
-~/megadown -o ~/7zip_libs_1509_linux.zip 'https://mega.nz/#!fjIWVAgT!ZyrxAyU26IfxDdmpBemMAer4DpzW06oIEAYboPMom98'
 ~/megadown -o ~/jd_setup_x64.sh 'https://mega.nz/#!LJ9FyK7b!t88t6YBo2Wm_ABkSO7GikxujDF5Hddng9bgDb8fwoJQ'
 chmod +x jd_setup_x64.sh
 ~/jd_setup_x64.sh -q -dir ~/jd2 -overwrite &> jd_install_log.txt
-unzip ~/7zip_libs_1509_linux.zip -d ~/jd2/libs
-rm -rf ~/megadown ~/.megadown/ ~/7zip_1509_linux.zip ~/jd_setup_x64.sh ~/jd_install_log.txt ~/.oracle_jre_usage/
+rm -rf ~/megadown ~/.megadown/ ~/jd_setup_x64.sh ~/jd_install_log.txt ~/.oracle_jre_usage/
 ```
 
 #### Tor Browser (local user installation) -> Requirements: python3
