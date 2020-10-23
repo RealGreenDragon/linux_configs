@@ -38,7 +38,7 @@ sudo add-apt-repository -y main && sudo add-apt-repository -y universe && sudo a
 sudo apt -y update && sudo apt -y upgrade && sudo apt -y install build-essential virtualbox-guest-dkms linux-headers-virtual && sudo apt -y autoremove && sudo apt -y clean
 ```
 
-#### Mount 'Guest Additions CD' from menu "Devices->Insert Guest Additions CD image..."
+#### Mount 'Guest Additions CD' from menu "Devices->Insert Guest Additions CD image..." (if a window appear, click "Cancel" button)
 
 #### Install/Update Guest Additions
 ```
@@ -66,7 +66,7 @@ sudo reboot
 
 ### General
 
-#### Base software (python3 only - required for all other installations)
+#### Base software (python3 only - required for many other software)
 ```
 sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https bash build-essential ca-certificates curl gawk git gnupg hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools p7zip-full p7zip-rar python3 python3-dev python3-doc python3-launchpadlib python3-pip python3-testresources python3-venv python3-widgetsnbextension qpdf sed software-properties-common sqlite3 unrar vim wget zip && sudo apt -y autoremove && sudo apt -y clean
 ```
