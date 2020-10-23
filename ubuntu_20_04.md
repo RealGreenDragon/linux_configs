@@ -78,9 +78,14 @@ sudo python3 -m pip install --upgrade pip wheel setuptools
 
 ### Audio/Video
 
-#### Codecs + libdvdcss2 + FFMpeg + RTMPDump
+#### Codecs + FFMpeg + RTMPDump
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install libdvdnav4 libdvdread7 gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libdvd-pkg ubuntu-restricted-extras ffmpeg ffmpegthumbnailer rtmpdump && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly ubuntu-restricted-extras ffmpeg ffmpegthumbnailer rtmpdump
+```
+
+#### libdvdcss2
+```
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install libdvdnav4 libdvdread7 libdvd-pkg && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
 ```
 
 #### MediaInfo
