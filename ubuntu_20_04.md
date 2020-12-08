@@ -80,7 +80,7 @@ sudo python3 -m pip install --upgrade pip wheel setuptools
 
 #### Codecs + FFMpeg + RTMPDump
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly ubuntu-restricted-extras ffmpeg ffmpegthumbnailer rtmpdump
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install ubuntu-restricted-extras ffmpeg ffmpegthumbnailer rtmpdump
 ```
 
 #### libdvdcss2
