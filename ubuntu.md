@@ -1,6 +1,10 @@
-# Ubuntu 20.04 LTS Configuration Guide
+# Ubuntu Configuration Guide
 
 Author: Daniele Giudice
+
+Versions:
+* 18.04 LTS
+* 20.04 LTS
 
 ## Set Italian Keyboard
 
@@ -68,7 +72,7 @@ sudo reboot
 
 #### Base software (python3 only - required for many other software)
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https bash build-essential ca-certificates curl gawk git gnupg hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools p7zip-full p7zip-rar python3 python3-dev python3-doc python3-launchpadlib python3-pip python3-testresources python3-venv python3-widgetsnbextension qpdf sed software-properties-common sqlite3 unrar vim wget zip && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl gawk git gnupg hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools p7zip-full p7zip-rar perl python3 python3-dev python3-doc python3-launchpadlib python3-pip python3-testresources python3-venv python3-widgetsnbextension qpdf sed software-properties-common sqlite3 unrar vim wget zip && sudo apt -y autoremove && sudo apt -y clean
 ```
 
 #### Basic Pyhton 3 Modules
@@ -85,7 +89,7 @@ sudo apt -y update && sudo apt -y upgrade && sudo apt -y install ubuntu-restrict
 
 #### libdvdcss2
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install libdvdnav4 libdvdread7 libdvd-pkg && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install libdvdnav4 "^libdvdread[0-9]" libdvd-pkg && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
 ```
 
 #### MediaInfo
@@ -120,6 +124,11 @@ wget -q -O - https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt | sudo apt-key
 wget -O ~/atom-amd64.deb https://atom.io/download/deb && sudo apt -y install ~/atom-amd64.deb && rm -f ~/atom-amd64.deb
 ```
 
+#### Notepadqq
+```
+sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt -y update && sudo apt -y install notepadqq
+```
+
 #### MiKTeX (system-wide, basic installation, automatic package installation enabled, TeXworks desktop icon) -> After installed it, NOT install TeXlive or standard TeXworks
 ```
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade && mpm --verbose --update
@@ -142,6 +151,11 @@ Categories=Office;Qt;
 EOT
 # Join TeX extensions to TeXworks
 grep texworks /usr/share/applications/defaults.list &> /dev/null || echo "text/x-tex=miktex-texworks.desktop" | sudo tee -a /usr/share/applications/defaults.list &> /dev/null
+```
+
+#### TeXstudio -> Requirements: MiKTeX
+```
+sudo add-apt-repository -y ppa:sunderme/texstudio && sudo apt -y update && sudo apt -y install texstudio
 ```
 
 ### Web & Programming
