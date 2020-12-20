@@ -121,7 +121,7 @@ wget -q -O - https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt | sudo apt-key
 
 #### Atom
 ```
-wget -O ~/atom-amd64.deb https://atom.io/download/deb && sudo apt -y install ~/atom-amd64.deb && rm -f ~/atom-amd64.deb
+wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add - && sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list' && sudo apt -y update && sudo apt -y install atom
 ```
 
 #### Notepadqq
@@ -135,6 +135,15 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC24356
 # Fix AppArmor config to keep Evince working
 [[ $(grep miktex /etc/apparmor.d/local/usr.bin.evince 2> /dev/null | wc -l) == 0 ]] && echo '/var/lib/miktex-texmf/fontconfig/config/** r,' | sudo tee -a /etc/apparmor.d/local/usr.bin.evince > /dev/null
 sudo service apparmor reload
+```
+
+#### TeXstudio -> Requirements: MiKTeX
+```
+sudo add-apt-repository -y ppa:sunderme/texstudio && sudo apt -y update && sudo apt -y install texstudio
+```
+
+#### TeXworks -> Requirements: MiKTeX (system-wide, TeXworks desktop icon, incompatible with standard TeXworks)
+```
 # Add TeXworks Launcher Icon
 sudo wget -O /usr/local/share/miktex-texmf/texworks.png "http://www.tug.org/texworks/img/TeXworks256.png"
 sudo tee /usr/share/applications/miktex-texworks.desktop > /dev/null <<EOT
@@ -151,11 +160,6 @@ Categories=Office;Qt;
 EOT
 # Join TeX extensions to TeXworks
 grep texworks /usr/share/applications/defaults.list &> /dev/null || echo "text/x-tex=miktex-texworks.desktop" | sudo tee -a /usr/share/applications/defaults.list &> /dev/null
-```
-
-#### TeXstudio -> Requirements: MiKTeX
-```
-sudo add-apt-repository -y ppa:sunderme/texstudio && sudo apt -y update && sudo apt -y install texstudio
 ```
 
 ### Web & Programming
