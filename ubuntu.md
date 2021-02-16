@@ -84,7 +84,7 @@ sudo python3 -m pip install --upgrade pip wheel setuptools
 
 #### Codecs + FFMpeg + RTMPDump
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install ubuntu-restricted-extras ffmpeg ffmpegthumbnailer rtmpdump
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install ubuntu-restricted-extras ffmpeg rtmpdump
 ```
 
 #### libdvdcss2
@@ -169,7 +169,7 @@ grep texworks /usr/share/applications/defaults.list &> /dev/null || echo "text/x
 sudo apt -y install cmake
 ```
 
-#### JDowloader 2 BETA (No Adware)
+#### JDowloader 2 BETA (local user installation - no adware)
 ```
 # Source JD2 Clean Installer:
 # https://board.jdownloader.org/showthread.php?t=54725
