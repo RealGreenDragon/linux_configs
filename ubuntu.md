@@ -80,6 +80,13 @@ sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-h
 sudo python3 -m pip install --upgrade pip wheel setuptools
 ```
 
+#### Firefox & Thunderbird via Official Mozilla repositories
+```
+sudo add-apt-repository -y ppa:ubuntu-mozilla-security/ppa && sudo apt -y update
+sudo apt install -y firefox
+sudo apt install -y thunderbird
+```
+
 ### Audio/Video
 
 #### Codecs + FFMpeg + RTMPDump
