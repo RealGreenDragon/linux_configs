@@ -72,7 +72,7 @@ sudo reboot
 
 #### Base software (python3 only - required for many other software)
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl gawk git gnupg hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools p7zip-full p7zip-rar perl python3 python3-dev python3-doc python3-launchpadlib python3-pip python3-testresources python3-venv python3-widgetsnbextension qpdf sed software-properties-common sqlite3 unrar vim wget zip && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar vim wget zip && sudo apt -y autoremove && sudo apt -y clean
 ```
 
 #### Basic Pyhton 3 Modules
