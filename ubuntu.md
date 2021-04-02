@@ -77,7 +77,7 @@ sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-h
 
 #### Basic Pyhton 3 Modules
 ```
-sudo python3 -m pip install --upgrade pip wheel setuptools
+sudo python3 -m pip install --upgrade pip wheel setuptools testresources
 ```
 
 #### Firefox & Thunderbird via Official Mozilla repositories
