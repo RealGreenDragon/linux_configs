@@ -91,13 +91,13 @@ sudo apt install -y thunderbird
 
 #### Codecs + FFMpeg + RTMPDump
 ```
-DEBIAN_FRONTEND="noninteractive"
+export DEBIAN_FRONTEND="noninteractive"
 sudo apt -y update && sudo apt -y upgrade && sudo apt -y install ubuntu-restricted-extras ffmpeg rtmpdump
 ```
 
 #### libdvdcss2
 ```
-DEBIAN_FRONTEND="noninteractive"
+export DEBIAN_FRONTEND="noninteractive"
 sudo apt -y update && sudo apt -y upgrade && sudo apt -y install libdvdnav4 "^libdvdread[0-9]" libdvd-pkg && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
 ```
 
