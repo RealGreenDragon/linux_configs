@@ -2,9 +2,7 @@
 
 Author: Daniele Giudice
 
-Versions:
-* 18.04 LTS
-* 20.04 LTS
+Versions: from 18 to 20
 
 ## Set Italian Keyboard
 
@@ -37,7 +35,7 @@ sudo add-apt-repository -y main && sudo add-apt-repository -y universe && sudo a
 
 ## Install/Update VirtualBox Guest Additions + Enable Shared Folders Access
 
-#### Update all packages + Install 'VirtualBox Guest Additions' minimal dependencies
+#### Scan repositories + Install 'VirtualBox Guest Additions' minimal dependencies + Update all installed packages
 ```
 sudo apt -y update && sudo apt -y install build-essential dkms linux-headers-generic && sudo apt -y upgrade && sudo apt -y autoremove && sudo apt -y clean
 ```
@@ -66,13 +64,13 @@ sudo usermod -aG vboxsf $(whoami)
 sudo reboot
 ```
 
-## Software (if not specified, latest available x64 en-us version will be installed)
+## Software (if not specified the latest available x64 en-us version will be installed, and the installation is system-wide)
 
 ### General
 
-#### Base software (python3 only - required for many other software)
+#### Base software (python2 is NOT installed)
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar vim wget zip && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt -y autoremove && sudo apt -y clean
 ```
 
 #### Basic Pyhton 3 Modules
@@ -80,7 +78,7 @@ sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-h
 sudo python3 -m pip install --upgrade pip wheel setuptools testresources
 ```
 
-#### Firefox & Thunderbird via Official Mozilla repositories
+#### Firefox & Thunderbird via official Mozilla repository
 ```
 sudo add-apt-repository -y ppa:ubuntu-mozilla-security/ppa && sudo apt -y update
 sudo apt install -y firefox
@@ -116,7 +114,7 @@ sudo apt -y install mpv
 sudo apt -y install vlc vlc-data
 ```
 
-#### youtube-dl
+#### youtube-dl (via python3 pip)
 ```
 sudo python3 -m pip install --upgrade youtube_dl
 ```
@@ -138,7 +136,7 @@ wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add - &
 sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt -y update && sudo apt -y install notepadqq
 ```
 
-#### MiKTeX (system-wide, basic installation, automatic package installation enabled, TeXworks desktop icon) -> After installed it, NOT install TeXlive or standard TeXworks
+#### MiKTeX (system-wide, basic installation, automatic package installation enabled, incompatible with TeXlive)
 ```
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade && mpm --verbose --update
 # Fix AppArmor config to keep Evince working
