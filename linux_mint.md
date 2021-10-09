@@ -80,7 +80,7 @@ pip install --upgrade pip wheel setuptools testresources youtube_dl
 
 #### Codecs + FFMpeg + RTMPDump
 ```
-sudo apt-get -y install mint-media-codecs ffmpeg rtmpdump
+sudo apt-get -y install mint-meta-codecs ffmpeg rtmpdump
 ```
 
 #### MediaInfo
