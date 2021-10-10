@@ -144,9 +144,9 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC24356
 sudo service apparmor reload
 ```
 
-#### TeXstudio -> Requirements: MiKTeX
+#### TeXstudio (IDE only, no TeXLive) -> Requirements: MiKTeX
 ```
-sudo add-apt-repository -y ppa:sunderme/texstudio && sudo apt -y update && sudo apt -y install texstudio
+sudo add-apt-repository -y ppa:sunderme/texstudio && sudo apt -y update && sudo apt -y --no-install-recommends install texstudio
 ```
 
 #### TeXworks -> Requirements: MiKTeX (system-wide, TeXworks desktop icon, incompatible with standard TeXworks)
@@ -199,7 +199,7 @@ wget -O ~/tor.tar.xz "$(python3 -c "import urllib.request; d=urllib.request.urlo
 
 #### XAMPP + Shortcut scripts in home directory -> Requirements: python3
 ```
-wget -O ~/xampp-x64.run "$(python3 -c "import urllib.request; print(urllib.request.urlopen('https://www.apachefriends.org/it/index.html').read().decode('utf8').split('XAMPP per <strong>Linux')[0].rsplit('href=\"', 1)[-1].split('\"')[0])")" && chmod +x ~/xampp-x64.run && sudo ~/xampp-x64.run --mode unattended && rm -f ~/xampp-x64.run && sudo chmod o+rx -R /opt/lampp/htdocs/ && echo "/opt/lampp/manager-linux-x64.run" > ~/xampp_gui.sh && echo "/opt/lampp/lampp" > ~/xampp_service.sh && chmod a+x ~/xampp_*.sh
+wget -O ~/xampp-x64.run "$(python3 -c "import urllib.request; print(urllib.request.urlopen('https://www.apachefriends.org/index.html').read().decode('utf8').split('XAMPP for <strong>Linux')[0].rsplit('href=\"', 1)[-1].split('\"')[0])")" && chmod +x ~/xampp-x64.run && sudo ~/xampp-x64.run --mode unattended && rm -f ~/xampp-x64.run && sudo chmod o+rx -R /opt/lampp/htdocs/ && echo "/opt/lampp/manager-linux-x64.run" > ~/xampp_gui.sh && echo "/opt/lampp/lampp" > ~/xampp_service.sh && chmod a+x ~/xampp_*.sh
 ```
 
 ### Virtualization

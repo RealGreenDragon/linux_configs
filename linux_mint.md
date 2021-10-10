@@ -90,7 +90,7 @@ sudo apt-get -y install mediainfo mediainfo-gui
 
 #### MKVToolNix + GUI
 ```
-wget -q -O - https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt | sudo apt-key add - && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(grep 'PRETTY_NAME' /etc/os-release | awk '{ print $2 }') main" | sudo tee /etc/apt/sources.list.d/mkvtoolnix.download.list && sudo apt-get -y update && sudo apt-get -y install mkvtoolnix mkvtoolnix-gui
+wget -q -O - https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt | sudo apt-key add - && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(grep 'UBUNTU_CODENAME' /etc/os-release | cut -d'=' -f 2) main" | sudo tee /etc/apt/sources.list.d/mkvtoolnix.download.list && sudo apt-get -y update && sudo apt-get -y install mkvtoolnix mkvtoolnix-gui
 ```
 
 ### Editors & IDE
@@ -105,14 +105,14 @@ wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add - &
 sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt-get -y update && sudo apt-get -y install notepadqq
 ```
 
-#### MiKTeX (local user installation, basic packages set, automatic package installation enabled, incompatible with TeXlive)
+#### MiKTeX (local user installation, basic packages set, automatic package installation enabled, incompatible with TeXlive) -> Reboot required to update PATH
 ```
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(grep 'PRETTY_NAME' /etc/os-release | awk '{ print $2 }') universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt-get -y update && sudo apt-get -y install miktex && miktexsetup finish && initexmf --set-config-value [MPM]AutoInstall=1 && mpm --verbose --update && mpm --verbose --package-level=basic --upgrade
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(grep 'UBUNTU_CODENAME' /etc/os-release | cut -d'=' -f 2) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt-get -y update && sudo apt-get -y install miktex && miktexsetup finish && initexmf --set-config-value [MPM]AutoInstall=1 && mpm --verbose --update && mpm --verbose --package-level=basic --upgrade && reboot
 ```
 
-#### TeXstudio -> Requirements: MiKTeX
+#### TeXstudio (IDE only, no TeXLive) -> Requirements: MiKTeX
 ```
-sudo add-apt-repository -y ppa:sunderme/texstudio && sudo apt-get -y update && sudo apt-get -y install texstudio
+sudo add-apt-repository -y ppa:sunderme/texstudio && sudo apt-get -y update && sudo apt-get -y --no-install-recommends install texstudio
 ```
 
 ### Web & Programming
@@ -145,7 +145,7 @@ wget -O ~/tor.tar.xz "$(python3 -c "import urllib.request; d=urllib.request.urlo
 
 #### XAMPP + Shortcut scripts in home directory -> Requirements: python3
 ```
-wget -O ~/xampp-x64.run "$(python3 -c "import urllib.request; print(urllib.request.urlopen('https://www.apachefriends.org/it/index.html').read().decode('utf8').split('XAMPP per <strong>Linux')[0].rsplit('href=\"', 1)[-1].split('\"')[0])")" && chmod +x ~/xampp-x64.run && sudo ~/xampp-x64.run --mode unattended && rm -f ~/xampp-x64.run && sudo chmod o+rx -R /opt/lampp/htdocs/ && echo "/opt/lampp/manager-linux-x64.run" > ~/xampp_gui.sh && echo "/opt/lampp/lampp" > ~/xampp_service.sh && chmod a+x ~/xampp_*.sh
+wget -O ~/xampp-x64.run "$(python3 -c "import urllib.request; print(urllib.request.urlopen('https://www.apachefriends.org/index.html').read().decode('utf8').split('XAMPP for <strong>Linux')[0].rsplit('href=\"', 1)[-1].split('\"')[0])")" && chmod +x ~/xampp-x64.run && sudo ~/xampp-x64.run --mode unattended && rm -f ~/xampp-x64.run && sudo chmod o+rx -R /opt/lampp/htdocs/ && echo "/opt/lampp/manager-linux-x64.run" > ~/xampp_gui.sh && echo "/opt/lampp/lampp" > ~/xampp_service.sh && chmod a+x ~/xampp_*.sh
 ```
 
 ### Virtualization
