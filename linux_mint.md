@@ -105,9 +105,9 @@ wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add - &
 sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt-get -y update && sudo apt-get -y install notepadqq
 ```
 
-#### MiKTeX (local user installation, basic packages set, automatic package installation enabled, incompatible with TeXlive) -> Reboot required to update PATH
+#### MiKTeX (local user installation, automatic package installation, incompatible with TeXlive) -> Reboot required to update PATH in GUI
 ```
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(grep 'UBUNTU_CODENAME' /etc/os-release | cut -d'=' -f 2) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt-get -y update && sudo apt-get -y install miktex && miktexsetup finish && initexmf --set-config-value [MPM]AutoInstall=1 && mpm --verbose --update && mpm --verbose --package-level=basic --upgrade && reboot
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(grep 'UBUNTU_CODENAME' /etc/os-release | cut -d'=' -f 2) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt-get -y update && sudo apt-get -y install miktex && miktexsetup finish && initexmf --set-config-value [MPM]AutoInstall=1 && mpm --verbose --update && reboot
 ```
 
 #### TeXstudio (IDE only, no TeXLive) -> Requirements: MiKTeX
