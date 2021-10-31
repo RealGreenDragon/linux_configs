@@ -76,6 +76,11 @@ echo -e "\nsource $HOME/py_env/bin/activate" >> ~/.bashrc
 pip install --upgrade pip wheel setuptools testresources youtube_dl
 ```
 
+#### WineHQ (stable branch, local user configurations included, incompatible with other Wine versions and PlayOnLinux)
+```
+sudo dpkg --add-architecture i386 && wget -q -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add - && sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ $(grep 'UBUNTU_CODENAME' /etc/os-release | cut -d'=' -f 2) main' && sudo apt-get -y update && sudo apt-get -y install --install-recommends winehq-stable && winecfg
+```
+
 ### Audio/Video
 
 #### Codecs + FFMpeg + RTMPDump
