@@ -179,7 +179,7 @@ sudo apt -y install cmake
 #### JDowloader 2 BETA (local user installation - no adware)
 ```
 # Source JD2 Clean Installer:
-# https://board.jdownloader.org/showthread.php?t=54725
+# https://jdownloader.org/jdownloader2
 # Source megadown
 # https://github.com/tonikelope/megadown
 
@@ -187,7 +187,7 @@ sudo apt -y install wget curl pv jq
 wget -O ~/megadown https://raw.githubusercontent.com/tonikelope/megadown/master/megadown
 chmod +x ~/megadown
 ~/megadown -o ~/jd_setup_x64.sh 'https://mega.nz/#!LJ9FyK7b!t88t6YBo2Wm_ABkSO7GikxujDF5Hddng9bgDb8fwoJQ'
-chmod +x jd_setup_x64.sh
+chmod +x ~/jd_setup_x64.sh
 ~/jd_setup_x64.sh -q -dir ~/jd2 -overwrite &> jd_install_log.txt
 rm -rf ~/megadown ~/.megadown/ ~/jd_setup_x64.sh ~/jd_install_log.txt ~/.oracle_jre_usage/
 ```
