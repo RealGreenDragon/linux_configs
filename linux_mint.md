@@ -65,7 +65,7 @@ sudo reboot
 
 #### Base software (python2 is NOT installed)
 ```
-sudo apt-get -y update && sudo apt-get -y upgrade --with-new-pkgs && sudo apt-get -y install apt-transport-https build-essential ca-certificates curl gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools numlockx p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt-get -y autoremove && sudo apt-get -y clean
+sudo apt-get -y update && sudo apt-get -y upgrade --with-new-pkgs && sudo apt-get -y install apt-transport-https build-essential ca-certificates curl dkms gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools numlockx p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt-get -y autoremove && sudo apt-get -y clean
 ```
 
 #### Python 3 virtualenv (local user, activated at startup)
