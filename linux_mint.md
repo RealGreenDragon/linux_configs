@@ -73,7 +73,7 @@ sudo apt-get -y update && sudo apt-get -y upgrade --with-new-pkgs && sudo apt-ge
 python3 -m venv ~/py_env
 source ~/py_env/bin/activate
 echo -e "\nsource $HOME/py_env/bin/activate" >> ~/.bashrc
-pip install --upgrade pip wheel setuptools testresources youtube_dl
+pip install --upgrade pip wheel setuptools youtube_dl
 ```
 
 #### WineHQ (stable branch, local user configurations included, incompatible with other Wine versions and PlayOnLinux)
