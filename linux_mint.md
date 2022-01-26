@@ -70,10 +70,14 @@ sudo apt-get -y update && sudo apt-get -y upgrade --with-new-pkgs && sudo apt-ge
 
 #### Python 3 virtualenv (local user, activated at startup)
 ```
+# Mandatory
 python3 -m venv ~/py_env
 source ~/py_env/bin/activate
 echo -e "\nsource $HOME/py_env/bin/activate" >> ~/.bashrc
-pip install --upgrade pip wheel setuptools youtube_dl
+pip install --upgrade pip wheel setuptools
+# Optional
+pip install --upgrade cmake
+pip install --upgrade youtube_dl
 ```
 
 #### WineHQ (stable branch, local user configurations included, incompatible with other Wine versions and PlayOnLinux)
@@ -120,12 +124,7 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC24356
 sudo add-apt-repository -y ppa:sunderme/texstudio && sudo apt-get -y update && sudo apt-get -y --no-install-recommends install texstudio
 ```
 
-### Web & Programming
-
-#### CMake
-```
-sudo apt-get -y install cmake
-```
+### Web
 
 #### JDowloader 2 BETA (local user installation - no adware)
 ```
