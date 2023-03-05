@@ -35,12 +35,14 @@ sudo dnf -y install kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc binu
 
 #### Install/Update Guest Additions
 ```
-sudo "$(df --output=target | grep VBox_GAs_)/VBoxLinuxAdditions.run"
+sudo mkdir -p /media/cdrom
+sudo mount -o ro /dev/cdrom /media/cdrom
+sudo /media/cdrom/VBoxLinuxAdditions.run --nox11
 ```
 
 #### Unmount 'Guest Additions CD'
 ```
-sudo umount -f "$(df --output=target | grep VBox_GAs_)"
+sudo umount -f /media/cdrom
 ```
 
 #### Remove 'Guest Additions CD' by right click on disk icon in VirtualBox window bottom-right and select "Remove disk from virtual drive"
@@ -61,8 +63,7 @@ sudo reboot
 
 #### Base software (python2 is NOT installed)
 ```
-sudo dnf -y install curl gawk git net-tools python3 python3-doc python3-pip python3-venv sed unrar unzip vim wget zip
-sudo dnf -y update
+sudo dnf -y install curl gawk git less net-tools python3 python3-pip python3-virtualenv sed unrar unzip vim wget zip
 ```
 
 #### Python 3 virtualenv (local user, activated at startup)
@@ -85,7 +86,7 @@ sudo python3 -m pip install --upgrade pip wheel setuptools
 
 #### FFMpeg
 ```
-sudo dnf -y install ffmpeg
+sudo dnf -y install ffmpeg-free
 ```
 
 #### MediaInfo
