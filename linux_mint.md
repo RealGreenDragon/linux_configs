@@ -76,8 +76,7 @@ source ~/py_env/bin/activate
 echo -e "\nsource $HOME/py_env/bin/activate" >> ~/.bashrc
 pip install --upgrade pip wheel setuptools
 # Optional
-pip install --upgrade cmake
-pip install --upgrade youtube_dl
+pip install --upgrade yt-dlp
 ```
 
 #### WineHQ (stable branch, local user configurations included, incompatible with other Wine versions and PlayOnLinux)
