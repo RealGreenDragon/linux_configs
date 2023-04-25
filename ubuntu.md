@@ -194,7 +194,7 @@ rm -rf ~/megadown ~/.megadown/ ~/jd_setup_x64.sh ~/jd_install_log.txt ~/.oracle_
 
 #### Tor Browser (local user installation) -> Requirements: python3
 ```
-wget -O ~/tor.tar.xz "$(python3 -c "import urllib.request; d=urllib.request.urlopen('https://www.torproject.org/download/').read().decode('utf8').split('\">Download for Linux')[0].rsplit('\"', 1)[-1]; print('https://www.torproject.org'+d)")" && tar xJpf ~/tor.tar.xz -C ~/ && rm -f ~/tor.tar.xz && cd ~/tor-browser_en-US && ./start-tor-browser.desktop --register-app && cd $OLDPWD
+wget -O ~/tor.tar.xz "$(python3 -c "import urllib.request; d=urllib.request.urlopen('https://www.torproject.org/download/').read().decode('utf8').split('\">Download for Linux')[0].rsplit('\"', 1)[-1]; print('https://www.torproject.org'+d)")" && tar xJpf ~/tor.tar.xz -C ~/ && rm -f ~/tor.tar.xz && cd ~/tor-browser && ./start-tor-browser.desktop --register-app && cd $OLDPWD
 ```
 
 #### XAMPP + Shortcut scripts in home directory -> Requirements: python3
