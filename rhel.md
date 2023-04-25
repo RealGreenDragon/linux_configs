@@ -29,6 +29,8 @@ sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.
 #### Install 'VirtualBox Guest Additions' minimal dependencies
 ```
 sudo dnf -y install kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc binutils make elfutils-libelf-devel dkms bzip2 perl
+sudo dnf -y install xorg-x11-xauth xorg-x11-fonts-* xorg-x11-utils dbus-x11 # extra dependencies for X11 Forwarding
+sudo dnf -y install xterm # to test X11 Forwarding
 ```
 
 #### Mount 'Guest Additions CD' from menu "Devices->Insert Guest Additions CD image..." (if a window appear, click "Cancel" button)
