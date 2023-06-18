@@ -70,7 +70,7 @@ sudo reboot
 
 #### Base software (python2 is NOT installed)
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl dkms gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl dkms gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic lsb-release net-tools p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt -y autoremove && sudo apt -y clean
 ```
 
 #### Basic Python 3 Modules
@@ -121,7 +121,7 @@ sudo python3 -m pip install --upgrade youtube_dl
 
 #### MKVToolNix + GUI
 ```
-wget -q -O - https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt | sudo apt-key add - && echo "deb https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mkvtoolnix.download.list && sudo apt -y update && sudo apt -y install mkvtoolnix mkvtoolnix-gui
+sudo wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mkvtoolnix.download.list && sudo apt -y update && sudo apt -y install mkvtoolnix mkvtoolnix-gui
 ```
 
 ### Editors & IDE

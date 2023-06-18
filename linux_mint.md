@@ -65,7 +65,7 @@ sudo reboot
 
 #### Base software (python2 is NOT installed)
 ```
-sudo apt-get -y update && sudo apt-get -y upgrade --with-new-pkgs && sudo apt-get -y install apt-transport-https build-essential ca-certificates curl dkms gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic net-tools numlockx p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt-get -y autoremove && sudo apt-get -y clean
+sudo apt-get -y update && sudo apt-get -y upgrade --with-new-pkgs && sudo apt-get -y install apt-transport-https build-essential ca-certificates curl dkms gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic lsb-release net-tools numlockx p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt-get -y autoremove && sudo apt-get -y clean
 ```
 
 #### Python 3 virtualenv (local user, activated at startup)
@@ -98,7 +98,7 @@ sudo apt-get -y install mediainfo mediainfo-gui
 
 #### MKVToolNix + GUI
 ```
-wget -q -O - https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt | sudo apt-key add - && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(grep 'UBUNTU_CODENAME' /etc/os-release | cut -d'=' -f 2) main" | sudo tee /etc/apt/sources.list.d/mkvtoolnix.download.list && sudo apt-get -y update && sudo apt-get -y install mkvtoolnix mkvtoolnix-gui
+sudo wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(grep 'UBUNTU_CODENAME' /etc/os-release | cut -d'=' -f 2) main" | sudo tee /etc/apt/sources.list.d/mkvtoolnix.download.list && sudo apt-get -y update && sudo apt-get -y install mkvtoolnix mkvtoolnix-gui
 ```
 
 ### Editors & IDE
