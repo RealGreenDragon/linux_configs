@@ -103,16 +103,6 @@ sudo wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.dow
 
 ### Editors & IDE
 
-#### Atom
-```
-wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add - && sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list' && sudo apt-get -y update && sudo apt-get -y install atom
-```
-
-#### Notepadqq
-```
-sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt-get -y update && sudo apt-get -y install notepadqq
-```
-
 #### MiKTeX (local user installation, automatic package installation, incompatible with TeXlive) -> Reboot required to update PATH in GUI
 ```
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(grep 'UBUNTU_CODENAME' /etc/os-release | cut -d'=' -f 2) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt-get -y update && sudo apt-get -y install miktex && miktexsetup finish && initexmf --set-config-value [MPM]AutoInstall=1 && mpm --verbose --update && reboot

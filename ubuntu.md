@@ -126,16 +126,6 @@ sudo wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.dow
 
 ### Editors & IDE
 
-#### Atom
-```
-wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add - && sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list' && sudo apt -y update && sudo apt -y install atom
-```
-
-#### Notepadqq
-```
-sudo add-apt-repository -y ppa:notepadqq-team/notepadqq && sudo apt -y update && sudo apt -y install notepadqq
-```
-
 #### MiKTeX (system-wide, basic installation, automatic package installation enabled, incompatible with TeXlive)
 ```
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade && mpm --verbose --update
@@ -147,26 +137,6 @@ sudo service apparmor reload
 #### TeXstudio (IDE only, no TeXLive) -> Requirements: MiKTeX
 ```
 sudo add-apt-repository -y ppa:sunderme/texstudio && sudo apt -y update && sudo apt -y --no-install-recommends install texstudio
-```
-
-#### TeXworks -> Requirements: MiKTeX (system-wide, TeXworks desktop icon, incompatible with standard TeXworks)
-```
-# Add TeXworks Launcher Icon
-sudo wget -O /usr/local/share/miktex-texmf/texworks.png "http://www.tug.org/texworks/img/TeXworks256.png"
-sudo tee /usr/share/applications/miktex-texworks.desktop > /dev/null <<EOT
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=TeXworks MiKTeX
-Icon=/usr/local/share/miktex-texmf/texworks.png
-Exec=miktex-texworks
-Comment=TeXworks MiKTeX
-Terminal=false
-MimeType=text/x-tex;application/pdf;
-Categories=Office;Qt;
-EOT
-# Join TeX extensions to TeXworks
-grep texworks /usr/share/applications/defaults.list &> /dev/null || echo "text/x-tex=miktex-texworks.desktop" | sudo tee -a /usr/share/applications/defaults.list &> /dev/null
 ```
 
 ### Web & Programming
