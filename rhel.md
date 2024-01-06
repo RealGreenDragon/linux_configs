@@ -1,8 +1,8 @@
-# Ubuntu Configuration Guide
+# RHEL Configuration Guide
 
 Author: Daniele Giudice
 
-Versions: 9.x
+Versions: 8.x, 9.x
 
 ## Set Italian Keyboard
 
@@ -39,7 +39,7 @@ sudo dnf -y install xterm # to test X11 Forwarding
 ```
 sudo mkdir -p /media/cdrom
 sudo mount -o ro /dev/cdrom /media/cdrom
-sudo /media/cdrom/VBoxLinuxAdditions.run --nox11
+sudo /media/cdrom/VBoxLinuxAdditions.run --nox11 # remove "nox11" option if GUI setup
 ```
 
 #### Unmount 'Guest Additions CD'
