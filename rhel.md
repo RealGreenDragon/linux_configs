@@ -1,4 +1,4 @@
-# RHEL Configuration Guide
+# RHEL/CentOS Configuration Guide
 
 Author: Daniele Giudice
 
@@ -19,9 +19,10 @@ export https_proxy=https://username:password@proxyhost:port/
 
 ## Enable EPEL repository
 ```
-sudo subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
-sudo dnf -y install yum-utils
-sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+export OS_MAJOR=$(cat /etc/os-release | grep '^VERSION=' | cut -d'=' -f2 | tr -d '"')
+sudo subscription-manager repos --enable codeready-builder-for-rhel-${OS_MAJOR}-$(arch)-rpms
+sudo dnf -y install yum-utils redhat-lsb-core
+sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-${OS_MAJOR}.noarch.rpm
 ```
 
 ## Install/Update VirtualBox Guest Additions + Enable Shared Folders Access
@@ -42,12 +43,12 @@ sudo mount -o ro /dev/cdrom /media/cdrom
 sudo /media/cdrom/VBoxLinuxAdditions.run --nox11 # remove "nox11" option if GUI setup
 ```
 
-#### Unmount 'Guest Additions CD'
+#### Unmount and eject 'Guest Additions CD'
 ```
 sudo umount -f /media/cdrom
-```
+eject /dev/cdrom
 
-#### Remove 'Guest Additions CD' by right click on disk icon in VirtualBox window bottom-right and select "Remove disk from virtual drive"
+```
 
 #### Add current user in 'vboxsf' group to grant access to shared folders
 ```
@@ -77,11 +78,6 @@ echo -e "\nsource $HOME/py_env/bin/activate" >> ~/.bashrc
 pip install --upgrade pip wheel setuptools
 # Optional
 pip install --upgrade yt-dlp
-```
-
-#### Basic Python 3 Modules
-```
-sudo python3 -m pip install --upgrade pip wheel setuptools
 ```
 
 ### Audio/Video

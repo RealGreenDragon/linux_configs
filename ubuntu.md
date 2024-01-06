@@ -47,12 +47,11 @@ sudo apt -y update && sudo apt -y install build-essential dkms linux-headers-gen
 sudo "$(df --output=target | grep VBox_GAs_)/VBoxLinuxAdditions.run"
 ```
 
-#### Unmount 'Guest Additions CD'
+#### Unmount and eject 'Guest Additions CD'
 ```
 sudo umount -f "$(df --output=target | grep VBox_GAs_)"
+eject /dev/cdrom
 ```
-
-#### Remove 'Guest Additions CD' by right click on disk icon in VirtualBox window bottom-right and select "Remove disk from virtual drive"
 
 #### Add current user in 'vboxsf' group to grant access to shared folders
 ```
@@ -73,9 +72,15 @@ sudo reboot
 sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl dkms gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic lsb-release net-tools p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt -y autoremove && sudo apt -y clean
 ```
 
-#### Basic Python 3 Modules
+#### Python 3 virtualenv (local user, activated at startup)
 ```
-sudo python3 -m pip install --upgrade pip wheel setuptools testresources
+# Mandatory
+python3 -m venv ~/py_env
+source ~/py_env/bin/activate
+echo -e "\nsource $HOME/py_env/bin/activate" >> ~/.bashrc
+pip install --upgrade pip wheel setuptools
+# Optional
+pip install --upgrade yt-dlp
 ```
 
 #### Firefox & Thunderbird via official Mozilla repository

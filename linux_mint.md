@@ -42,12 +42,11 @@ sudo apt-get -y update && sudo apt-get -y install build-essential dkms linux-hea
 sudo "$(df --output=target | grep VBox_GAs_)/VBoxLinuxAdditions.run"
 ```
 
-#### Unmount 'Guest Additions CD'
+#### Unmount and eject 'Guest Additions CD'
 ```
 sudo umount -f "$(df --output=target | grep VBox_GAs_)"
+eject /dev/cdrom
 ```
-
-#### Remove 'Guest Additions CD' by right click on disk icon in VirtualBox window bottom-right and select "Remove disk from virtual drive"
 
 #### Add current user in 'vboxsf' group to grant access to shared folders
 ```
