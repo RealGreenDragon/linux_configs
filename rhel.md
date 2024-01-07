@@ -66,7 +66,7 @@ sudo reboot
 
 #### Base software (python2 is NOT installed)
 ```
-sudo dnf -y install curl gawk git less net-tools python3 python3-pip python3-virtualenv sed unrar unzip vim wget zip
+sudo dnf -y update && sudo dnf -y install curl gawk git less net-tools python3 python3-pip python3-virtualenv sed unrar unzip vim wget zip
 ```
 
 #### Python 3 virtualenv (local user, activated at startup)
