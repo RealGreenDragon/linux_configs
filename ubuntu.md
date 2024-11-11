@@ -2,7 +2,7 @@
 
 Author: Daniele Giudice
 
-Versions: from 18 to 20
+Versions: from 22 to 24
 
 ## Set Italian Keyboard
 
@@ -37,7 +37,7 @@ sudo add-apt-repository -y main && sudo add-apt-repository -y universe && sudo a
 
 #### Scan repositories + Install 'VirtualBox Guest Additions' minimal dependencies + Update all installed packages
 ```
-sudo apt -y update && sudo apt -y install build-essential dkms linux-headers-generic && sudo apt -y upgrade && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y install build-essential dkms linux-headers-generic && sudo apt -y upgrade --with-new-pkgs && sudo apt -y autoremove && sudo apt -y clean
 ```
 
 #### Mount 'Guest Additions CD' from menu "Devices->Insert Guest Additions CD image..." (if a window appear, click "Cancel" button)
@@ -69,7 +69,7 @@ sudo reboot
 
 #### Base software (python2 is NOT installed)
 ```
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install apt-transport-https build-essential ca-certificates curl dkms gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic lsb-release net-tools p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y upgrade --with-new-pkgs && sudo apt -y install apt-transport-https build-essential ca-certificates curl dkms gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic lsb-release net-tools p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt -y autoremove && sudo apt -y clean
 ```
 
 #### Python 3 virtualenv (local user, activated at startup)
@@ -79,8 +79,6 @@ python3 -m venv ~/py_env
 source ~/py_env/bin/activate
 echo -e "\nsource $HOME/py_env/bin/activate" >> ~/.bashrc
 pip install --upgrade pip wheel setuptools
-# Optional
-pip install --upgrade yt-dlp
 ```
 
 #### Firefox & Thunderbird via official Mozilla repository
@@ -90,12 +88,17 @@ sudo apt install -y firefox
 sudo apt install -y thunderbird
 ```
 
+#### WineHQ (stable branch, local user configurations included, incompatible with other Wine versions and PlayOnLinux)
+```
+sudo dpkg --add-architecture i386 && wget -q -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add - && sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ $(lsb_release -cs) main' && sudo apt -y update && sudo apt -y install --install-recommends winehq-stable && winecfg
+```
+
 ### Audio/Video
 
-#### Codecs + FFMpeg + RTMPDump
+#### Codecs + FFMpeg
 ```
 export DEBIAN_FRONTEND="noninteractive"
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install ubuntu-restricted-extras ffmpeg rtmpdump
+sudo apt -y update && sudo apt -y upgrade && sudo apt -y install ubuntu-restricted-extras ffmpeg
 ```
 
 #### libdvdcss2
@@ -104,7 +107,7 @@ export DEBIAN_FRONTEND="noninteractive"
 sudo apt -y update && sudo apt -y upgrade && sudo apt -y install libdvdnav4 "^libdvdread[0-9]" libdvd-pkg && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
 ```
 
-#### MediaInfo
+#### MediaInfo + GUI
 ```
 sudo apt -y install mediainfo mediainfo-gui
 ```
@@ -119,9 +122,9 @@ sudo apt -y install mpv
 sudo apt -y install vlc vlc-data
 ```
 
-#### youtube-dl (via python3 pip)
+#### yt-dlp (via python3 pip)
 ```
-sudo python3 -m pip install --upgrade youtube_dl
+sudo python3 -m pip install --upgrade yt-dlp[default]
 ```
 
 #### MKVToolNix + GUI
@@ -131,12 +134,9 @@ sudo wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.dow
 
 ### Editors & IDE
 
-#### MiKTeX (system-wide, basic installation, automatic package installation enabled, incompatible with TeXlive)
+#### MiKTeX (user-only, basic installation, automatic package installation enabled, incompatible with TeXlive)
 ```
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889 && echo "deb [arch=amd64] http://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && sudo miktexsetup --shared=yes finish && sudo initexmf --admin --set-config-value [MPM]AutoInstall=1 && sudo mpm --admin --verbose --update && sudo mpm --admin --verbose --package-level=basic --upgrade && mpm --verbose --update
-# Fix AppArmor config to keep Evince working
-[[ $(grep miktex /etc/apparmor.d/local/usr.bin.evince 2> /dev/null | wc -l) == 0 ]] && echo '/var/lib/miktex-texmf/fontconfig/config/** r,' | sudo tee -a /etc/apparmor.d/local/usr.bin.evince > /dev/null
-sudo service apparmor reload
+curl -fsSL https://miktex.org/download/key | sudo tee /usr/share/keyrings/miktex-keyring.asc > /dev/null && echo "deb [signed-by=/usr/share/keyrings/miktex-keyring.asc] https://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && miktexsetup finish && initexmf --set-config-value [MPM]AutoInstall=1 && mpm --verbose --update && mpm --verbose --package-level=basic --upgrade && mpm --verbose --update
 ```
 
 #### TeXstudio (IDE only, no TeXLive) -> Requirements: MiKTeX
@@ -185,6 +185,19 @@ curl -fsSL https://get.docker.com -o ~/get-docker.sh && chmod a+x ~/get-docker.s
 ```
 
 ### Network
+
+#### Driver WiFi USB RTL8811CU/RTL8821CU -> Requirements: git + build-essential + dkms
+```
+mkdir -p ~/wifi
+cd ~/wifi
+git clone https://github.com/brektrou/rtl8821CU.git
+cd rtl8821CU
+chmod +x dkms-install.sh
+sudo ./dkms-install.sh
+sudo modprobe 8821cu
+cd ~
+rm -rf ~/wifi
+```
 
 #### Kathara + GUI -> Requirements: Docker + python 2.7 (aliased as 'python')
 ```
