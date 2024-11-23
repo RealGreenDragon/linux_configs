@@ -37,7 +37,7 @@ sudo add-apt-repository -y main && sudo add-apt-repository -y universe && sudo a
 
 #### Scan repositories + Install 'VirtualBox Guest Additions' minimal dependencies + Update all installed packages
 ```
-sudo apt -y update && sudo apt -y install build-essential dkms linux-headers-generic && sudo apt -y upgrade --with-new-pkgs && sudo apt -y autoremove && sudo apt -y clean
+sudo apt -y update && sudo apt -y install build-essential dkms linux-headers-generic && sudo apt -y upgrade --with-new-pkgs && sudo apt autoremove -y && sudo apt clean -y
 ```
 
 #### Mount 'Guest Additions CD' from menu "Devices->Insert Guest Additions CD image..." (if a window appear, click "Cancel" button)
