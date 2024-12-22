@@ -32,7 +32,7 @@ export https_proxy=https://username:password@proxyhost:port/
 
 #### Scan repositories + Install 'VirtualBox Guest Additions' minimal dependencies + Update all installed packages
 ```
-sudo apt -y update && sudo apt -y install build-essential dkms linux-headers-generic && sudo apt -y upgrade --with-new-pkgs && sudo apt autoremove -y && sudo apt clean -y
+sudo apt update -y && sudo apt install -y build-essential dkms linux-headers-generic && sudo apt upgrade -y --with-new-pkgs && sudo apt autoremove -y && sudo apt clean -y
 ```
 
 #### Mount 'Guest Additions CD' from menu "Devices->Insert Guest Additions CD image..." (if a window appear, click "Cancel" button)
@@ -64,7 +64,7 @@ sudo reboot
 
 #### Base software (python2 is NOT installed)
 ```
-sudo apt -y update && sudo apt -y upgrade --with-new-pkgs && sudo apt -y install apt-transport-https build-essential ca-certificates curl dkms gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic lsb-release net-tools numlockx p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt -y autoremove && sudo apt -y clean
+sudo apt update -y && sudo apt upgrade -y --with-new-pkgs && sudo apt install -y apt-transport-https build-essential ca-certificates curl dkms gawk git hunspell-en-us hunspell-it linux-tools-common linux-tools-generic lsb-release net-tools numlockx p7zip-full p7zip-rar perl python3 python3-doc python3-pip python3-venv sed software-properties-common unrar unzip vim wget zip && sudo apt autoremove -y && sudo apt clean -y
 ```
 
 #### Python 3 virtualenv (local user, activated at startup)
@@ -78,42 +78,42 @@ pip install --upgrade pip wheel setuptools
 
 #### Firefox & Thunderbird via official Mozilla repository
 ```
-sudo add-apt-repository -y ppa:ubuntu-mozilla-security/ppa && sudo apt -y update
+sudo add-apt-repository -y ppa:ubuntu-mozilla-security/ppa && sudo apt update -y
 sudo apt install -y firefox
 sudo apt install -y thunderbird
 ```
 
 #### WineHQ (stable branch, local user configurations included, incompatible with other Wine versions and PlayOnLinux)
 ```
-sudo dpkg --add-architecture i386 && wget -q -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add - && sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ $(lsb_release -cs) main' && sudo apt -y update && sudo apt -y install --install-recommends winehq-stable && winecfg
+sudo dpkg --add-architecture i386 && wget -q -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add - && sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ $(lsb_release -cs) main' && sudo apt update -y && sudo apt install -y --install-recommends winehq-stable && winecfg
 ```
 
 ### Audio/Video
 
 #### Codecs + FFMpeg
 ```
-sudo apt -y install mint-meta-codecs ffmpeg
+sudo apt install -y mint-meta-codecs ffmpeg
 ```
 
 #### libdvdcss2
 ```
 export DEBIAN_FRONTEND="noninteractive"
-sudo apt -y update && sudo apt -y upgrade && sudo apt -y install libdvdnav4 "^libdvdread[0-9]" libdvd-pkg && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
+sudo apt update -y && sudo apt upgrade -y && sudo apt install -y libdvdnav4 "^libdvdread[0-9]" libdvd-pkg && sudo dpkg-reconfigure -f noninteractive libdvd-pkg
 ```
 
 #### MediaInfo + GUI
 ```
-sudo apt -y install mediainfo mediainfo-gui
+sudo apt install -y mediainfo mediainfo-gui
 ```
 
 #### MPV
 ```
-sudo apt -y install mpv
+sudo apt install -y mpv
 ```
 
 #### VLC
 ```
-sudo apt -y install vlc vlc-data
+sudo apt install -y vlc vlc-data
 ```
 
 #### yt-dlp (via python3 pip)
@@ -123,26 +123,26 @@ sudo python3 -m pip install --upgrade yt-dlp[default]
 
 #### MKVToolNix + GUI
 ```
-sudo wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mkvtoolnix.download.list && sudo apt -y update && sudo apt -y install mkvtoolnix mkvtoolnix-gui
+sudo wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/gpg-pub-moritzbunkus.gpg] https://mkvtoolnix.download/ubuntu/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mkvtoolnix.download.list && sudo apt update -y && sudo apt install -y mkvtoolnix mkvtoolnix-gui
 ```
 
 ### Editors & IDE
 
 #### MiKTeX (user-only, basic installation, automatic package installation enabled, incompatible with TeXlive)
 ```
-curl -fsSL https://miktex.org/download/key | sudo tee /usr/share/keyrings/miktex-keyring.asc > /dev/null && echo "deb [signed-by=/usr/share/keyrings/miktex-keyring.asc] https://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt -y update && sudo apt -y install miktex && miktexsetup finish && initexmf --set-config-value [MPM]AutoInstall=1 && mpm --verbose --update && mpm --verbose --package-level=basic --upgrade && mpm --verbose --update
+curl -fsSL https://miktex.org/download/key | sudo tee /usr/share/keyrings/miktex-keyring.asc > /dev/null && echo "deb [signed-by=/usr/share/keyrings/miktex-keyring.asc] https://miktex.org/download/ubuntu $(lsb_release -cs) universe" | sudo tee /etc/apt/sources.list.d/miktex.list && sudo apt update -y && sudo apt install -y miktex && miktexsetup finish && initexmf --set-config-value [MPM]AutoInstall=1 && mpm --verbose --update && mpm --verbose --package-level=basic --upgrade && mpm --verbose --update
 ```
 
 #### TeXstudio (IDE only, no TeXLive) -> Requirements: MiKTeX
 ```
-sudo add-apt-repository -y ppa:sunderme/texstudio && sudo apt -y update && sudo apt -y --no-install-recommends install texstudio
+sudo add-apt-repository -y ppa:sunderme/texstudio && sudo apt update -y && sudo apt -y --no-install-recommends install texstudio
 ```
 
 ### Web & Programming
 
 #### CMake
 ```
-sudo apt -y install cmake
+sudo apt install -y cmake
 ```
 
 #### JDowloader 2 BETA (local user installation - no adware)
@@ -152,7 +152,7 @@ sudo apt -y install cmake
 # Source megadown
 # https://github.com/tonikelope/megadown
 
-sudo apt -y install wget curl pv jq
+sudo apt install -y wget curl pv jq
 wget -O ~/megadown https://raw.githubusercontent.com/tonikelope/megadown/master/megadown
 chmod +x ~/megadown
 ~/megadown -o ~/jd_setup_x64.sh 'https://mega.nz/#!LJ9FyK7b!t88t6YBo2Wm_ABkSO7GikxujDF5Hddng9bgDb8fwoJQ'
@@ -195,7 +195,7 @@ rm -rf ~/wifi
 
 #### Kathara + GUI -> Requirements: Docker + python 2.7 (aliased as 'python')
 ```
-sudo apt -y install xterm python && sudo python -m pip install --upgrade ipaddress && sudo git clone --recursive https://github.com/KatharaFramework/Kathara.git /opt/kathara
+sudo apt install -y xterm python && sudo python -m pip install --upgrade ipaddress && sudo git clone --recursive https://github.com/KatharaFramework/Kathara.git /opt/kathara
 
 tee -a ~/.bashrc > /dev/null <<EOT
 # Kathara Env
@@ -212,22 +212,22 @@ $NETKIT_HOME/install
 
 #### Nmap
 ```
-sudo apt -y install nmap
+sudo apt install -y nmap
 ```
 
 #### Wireshark (current user access enabled) -> Reboot required
 ```
-sudo apt -y install wireshark && sudo usermod -aG wireshark $(whoami) && sudo reboot
+sudo apt install -y wireshark && sudo usermod -aG wireshark $(whoami) && sudo reboot
 ```
 
 ### File Sharing
 
 #### aMule
 ```
-sudo apt -y install amule
+sudo apt install -y amule
 ```
 
 #### qBittorrent
 ```
-sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && sudo apt -y update && sudo apt -y install qbittorrent
+sudo add-apt-repository -y ppa:qbittorrent-team/qbittorrent-stable && sudo apt update -y && sudo apt install -y qbittorrent
 ```
